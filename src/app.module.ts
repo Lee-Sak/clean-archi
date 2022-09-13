@@ -9,7 +9,7 @@ import dbConfig from './config/dbConfig';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
+      envFilePath: [`${__dirname}/config/env/${process.env.NODE_ENV}.env`],
       load: [emailConfig, dbConfig],
       isGlobal: true,
       validationSchema,

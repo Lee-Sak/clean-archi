@@ -12,14 +12,16 @@ import { UserEventsHandler } from './application/event/user.event.handler';
 import { GetUserInfoQueryHandler } from './application/query/get.user.info.query.handler';
 import { UserRepository } from './infra/db/repository/UserRepository';
 import { UserFactory } from './domain/user.factory';
+import { GmailService } from './infra/adapter/gmail.service';
+import { NaverEmailService } from './infra/adapter/naver-email.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity]), CqrsModule],
   controllers: [UsersController],
   providers: [
     UsersService,
-    EmailService,
     UsersRepo,
+    EmailService,
     {
       provide: 'Person',
       useClass: Jane,
@@ -28,7 +30,7 @@ import { UserFactory } from './domain/user.factory';
     UserEventsHandler,
     GetUserInfoQueryHandler,
     { provide: 'UserRepository', useClass: UserRepository },
-    { provide: 'EmailService', useClass: EmailService },
+    { provide: 'EmailService', useClass: NaverEmailService },
     UserFactory,
   ],
 })

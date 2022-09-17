@@ -22,6 +22,7 @@ export class UserRepository implements IUserRepository {
 
     const { id, name, signupVerifyToken, password } = userEntity;
 
+    // 재구성하다
     return this.userFactory.reconstitute(
       id,
       name,

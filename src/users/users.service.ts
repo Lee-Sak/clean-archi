@@ -7,10 +7,7 @@ import { UserInfo } from './interface/UserInfo';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    private readonly emailService: EmailService,
-    private readonly usersRepo: UsersRepo,
-  ) {}
+  constructor(private readonly usersRepo: UsersRepo) {}
 
   async isUserExists(email: string) {
     const user = await this.usersRepo.selectWhereEmail(email);

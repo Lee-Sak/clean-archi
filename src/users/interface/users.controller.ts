@@ -42,7 +42,7 @@ export class UsersController {
     const getUserInfoQuery = new GetUserInfoQuery(id);
 
     return this.queryBus.execute(getUserInfoQuery);
-    // return await this.usersService.readUser(id);
+    //return await this.usersService.readUser(id);
   }
 
   @Get()

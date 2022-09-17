@@ -5,6 +5,7 @@ import { UserFactory } from 'src/users/domain/user.factory';
 import * as uuid from 'uuid';
 import { ulid } from 'ulid';
 import { IUserRepository } from 'src/users/domain/repository/iuser.repository';
+import { UserCreatedEvent } from 'src/users/domain/user.created.event';
 
 @Injectable()
 @CommandHandler(CreateUserCommand)
@@ -23,7 +24,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
       throw new HttpException('해당 이메일은 이미 존재합니다.', 400);
     }
 
-    const id = ulid();
+    const id = null;
     const signupVerifyToken = uuid.v1();
     await this.userRepository.save(
       Number(id),
@@ -33,7 +34,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
       signupVerifyToken,
     );
 
-    this.userFactory.create(
+    return this.userFactory.create(
       Number(id),
       name,
       email,
